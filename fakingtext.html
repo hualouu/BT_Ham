@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type anthing slowly</title>
+    <style>
+        #fake-textarea {
+            width: 400px;
+            height: 200px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Type anthing slowly</h2>
+    <div id="fake-textarea" contenteditable></div>
+
+    <script>
+        // Lấy đối tượng div với thuộc tính contenteditable
+        let fakeTextarea = document.getElementById("fake-textarea");
+
+        // Lắng nghe sự kiện nhập liệu
+        fakeTextarea.addEventListener("input", function () {
+            // Cập nhật nội dung của vùng văn bản giả
+            let content = fakeTextarea.innerHTML;
+            content = content.replace(/<br>/g, "\n"); // Thay thế các thẻ <br> bằng ký tự xuống dòng
+            fakeTextarea.textContent = content;
+        });
+    </script>
+</body>
+
+
+</html>
