@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Khởi tạo bàn cờ với kích thước 3x3 và tất cả các ô đều trống
+        let board = [
+            [".", ".", "."],
+            [".", ".", "."],
+            [".", ".", "."]
+        ];
+
+        // Hàm kiểm tra xem người chơi nào chiến thắng
+        function checkWin(board) {
+            // Kiểm tra hàng
+            for (let i = 0; i < 3; i++) {
+                if (board[i][0] === board[i][1] && board[i][1] === board[i][2] && board[i][0] !== ".") {
+                    return board[i][0];
+                }
+            }
+
+            // Kiểm tra cột
+            for (let j = 0; j < 3; j++) {
+                if (board[0][j] === board[1][j] && board[1][j] === board[2][j] && board[0][j] !== ".") {
+                    return board[0][j];
+                }
+            }
+
+            // Kiểm tra đường chéo chính
+            if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] !== ".") {
+                return board[0][0];
+            }
+
+            // Kiểm tra đường chéo phụ
+            if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] !== ".") {
+                return board[0][2];
+            }
+
+            // Không có người chiến thắng
+            return null;
+        }
+
+        // Vòng lặp để lấy giá trị nhập vào từ người chơi và cập nhật bàn cờ
+        let player = "X";
+        let winner = null;
+        while (winner === null) {
+            // In ra bàn cờ hiện tại
+            console.log(board);
+
+            // Lấy giá trị nhập vào từ người chơi
+            let row = prompt("Nhập số hàng (0-2):");
+            let col = prompt("Nhập số cột (0-2):");
+
+            // Cập nhật giá trị của bàn cờ
+            board[row][col] = player;
+
+            // Kiểm tra xem có người chiến thắng hay không
+            winner = checkWin(board);
+
+            // Chuyển lượt cho người chơi khác
+            if (player === "X") {
+                player = "O";
+            } else {
+                player = "X";
+            }
+        }
+
+        // In ra kết quả người chiến thắng
+        console.log("Người chiến thắng là: " + winner);
+    </script>
+</body>
+
+</html>
